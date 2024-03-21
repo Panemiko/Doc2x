@@ -1,0 +1,26 @@
+.header {
+    background-color: hsl(var(--primary));;
+}
+
+.sidebar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+  }
+  
+  .sidebar-item {
+    margin-right: 10px;
+  }
+  
+  .sidebar-right {
+    display: flex;
+  }
+  
+  .sidebar-right .sidebar-item:last-child {
+    margin-right: 0;
+  }
+
+.body {
+    
+}
