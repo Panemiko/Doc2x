@@ -1,0 +1,11 @@
+.body {
+    background-color: rgb(193, 98, 98);
+    min-height: 100vh;
+}
+label, .box{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: auto;
+    width: center;
+}
