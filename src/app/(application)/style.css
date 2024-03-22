@@ -1,26 +1,19 @@
-.header {
-    background-color: hsl(var(--primary));;
+/* App.css */
+.App {
+  text-align: center;
 }
 
-.sidebar {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 10px;
-  }
-  
-  .sidebar-item {
-    margin-right: 10px;
-  }
-  
-  .sidebar-right {
-    display: flex;
-  }
-  
-  .sidebar-right .sidebar-item:last-child {
-    margin-right: 0;
-  }
+.App-header {
+  background-color: #282c34;
+  padding: 20px;
+  color: white;
+}
 
-.body {
-    
+.App-footer {
+  background-color: #282c34;
+  padding: 20px;
+  color: white;
+  position: fixed;
+  width: 100%;
+  bottom: 0;
 }
