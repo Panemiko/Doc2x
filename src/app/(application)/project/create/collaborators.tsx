@@ -4,7 +4,7 @@ import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm } from "react-hook-form"
 import { z } from "zod"
 import { Button } from "@/components/ui/button"
-import { ArrowUpFromLine, CrossIcon } from 'lucide-react'
+import { Plus } from 'lucide-react'
 import { X } from 'lucide-react';
 import { useState } from "react"
 import {
@@ -43,6 +43,7 @@ export function CollaboratorsSelect() {
       id: randomNumber().toString()
     };
     setTitles(titles => [...titles, newTitle]);
+    form.reset()
   }
 
 
@@ -53,21 +54,21 @@ export function CollaboratorsSelect() {
 
   return (
     <Form {...form}>
-      <form onSubmit={form.handleSubmit(onSubmit)} style={{ borderRadius: '15px', border: '3px solid ' }} className="space-y-8 bg-lime-400 p-2">
+      <form onSubmit={form.handleSubmit(onSubmit)} style={{ borderRadius: '15px', border: '3px solid #16A34A'}} className="space-y-8 p-2">
         <FormField
           control={form.control}
           name="value"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Title of your sections</FormLabel>
+              <FormLabel>Add your collaborators:</FormLabel>
               <div className="flex">
                 <FormControl>
-                  <Input placeholder="Ex.:Introduction" {...field} />
+                  <Input placeholder="example@exmpl.com" {...field} />
                 </FormControl>
-                <Button className="ml-2"><ArrowUpFromLine /></Button>
+                <Button className="ml-2"><Plus /></Button>
               </div>
               <FormDescription>
-                Press enter to add.
+                Enter their email here.
               </FormDescription>
               <FormMessage />
             </FormItem>
@@ -76,8 +77,8 @@ export function CollaboratorsSelect() {
         <div id="titles">
         {
           titles.map((title, index) => {
-            return <div className="flex" key={index}>{title.value} 
-            <X onClick={() => deleteTitle(title.id)} /> 
+            return <div className="flex mb-1" style={} key={index}>{title.value} 
+            <X style={} onClick={() => deleteTitle(title.id)} /> 
             </div>
           })
         }

@@ -44,6 +44,7 @@ export function SectionCreate() {
       id: randomNumber().toString()
     };
     setTitles(titles => [...titles, newTitle]);
+    form.reset()
   }
 
 
