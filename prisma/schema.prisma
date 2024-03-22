@@ -11,15 +11,16 @@ datasource db {
 }
 
 model User {
-    id            String     @id @unique @default(cuid())
-    createdAt     DateTime   @default(now())
-    updatedAt     DateTime   @default(now()) @updatedAt
-    name          String
-    email         String     @unique
-    emailVerified Boolean
-    sessions      Session[]
-    accounts      Account[]
-    Document      Document[]
+    id             String          @id @unique @default(cuid())
+    createdAt      DateTime        @default(now())
+    updatedAt      DateTime        @default(now()) @updatedAt
+    name           String
+    email          String          @unique
+    emailVerified  Boolean
+    sessions       Session[]
+    accounts       Account[]
+    project        Project[]
+    collaborations Collaboration[]
 
     @@map("users")
 }
@@ -36,7 +37,7 @@ model Account {
 }
 
 model Session {
-    id        String   @id
+    id        String   @id @unique @default(cuid())
     createdAt DateTime @default(now())
     updatedAt DateTime @default(now()) @updatedAt
     user      User     @relation(references: [id], fields: [userId], onDelete: Cascade)
@@ -46,12 +47,40 @@ model Session {
     @@map("sessions")
 }
 
-model Document {
-    id        String   @id
+model Project {
+    id             String          @id @unique @default(cuid())
+    createdAt      DateTime        @default(now())
+    updatedAt      DateTime        @default(now()) @updatedAt
+    owner          User            @relation(fields: [ownerId], references: [id])
+    ownerId        String
+    title          String
+    abstract       String?
+    collaborations Collaboration[]
+    sections       Section[]
+
+    @@map("projects")
+}
+
+model Section {
+    id        String   @id @unique @default(cuid())
     createdAt DateTime @default(now())
     updatedAt DateTime @default(now()) @updatedAt
-    owner     User     @relation(fields: [userId], references: [id])
+    project   Project  @relation(fields: [projectId], references: [id])
+    projectId String
+    title     String
+    content   String
+
+    @@map("sections")
+}
+
+model Collaboration {
+    id        String   @id @unique @default(cuid())
+    createdAt DateTime @default(now())
+    updatedAt DateTime @default(now()) @updatedAt
+    user      User     @relation(fields: [userId], references: [id])
     userId    String
-    title String
-    abstract String
+    project   Project  @relation(fields: [projectId], references: [id])
+    projectId String
+
+    @@map("collaborations")
 }
