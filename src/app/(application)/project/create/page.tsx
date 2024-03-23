@@ -6,39 +6,43 @@ import { SectionCreate } from './sections';
 import { ProjectInfos } from './form';
 
 export default function Page() {
-    const [collaboratorsData, setCollaboratorsData] = useState<{value: string, id: string}[]>([]);
-    const [sectionsData, setSectionsData] = useState<{value: string, id: string}[]>([]);
-    const [projectData, setProjectData] = useState<{ title: string, abstract: string } | null>(null);
-
-    function handleCollaboratorsData(data: {value: string, id: string}[]) {
-        setCollaboratorsData(data);
-        console.log("Dados dos colaboradores atualizados:", data);
-    }
-
-    function handleSectionsData(data: {value: string, id: string}[]) {
-        setSectionsData(data);
-        console.log("Dados das seções atualizados:", data);
-    }
+    const [formData, setFormData] = useState<{
+        project: { title: string, abstract: string },
+        collaborators: { value: string, id: string }[],
+        sections: { value: string, id: string }[]
+    }>({
+        project: { title: "", abstract: "" },
+        collaborators: [],
+        sections: []
+    });
 
     function handleProjectInfos(data: { title: string, abstract: string }) {
-        setProjectData(data);
+        setFormData(prevData => ({
+            ...prevData,
+            project: data
+        }));
     }
 
-    function handleSubmitProject() {
-        const form = document.getElementById("project-form") as HTMLFormElement;
-        if (form) {
-            form.dispatchEvent(new Event("submit"));
-        }
+    function handleCollaboratorsData(data: { value: string, id: string }[]) {
+        setFormData(prevData => ({
+            ...prevData,
+            collaborators: data
+        }));
+    }
+
+    function handleSectionsData(data: { value: string, id: string }[]) {
+        setFormData(prevData => ({
+            ...prevData,
+            sections: data
+        }));
     }
 
     function handleCreateProject() {
-        console.log("Dados dos colaboradores:", collaboratorsData);
-        console.log("Dados das seções:", sectionsData);
-        handleSubmitProject();
-        if (projectData) {
-            console.log("Dados Básicos:", projectData);
+        if (formData.project.title && formData.collaborators.length > 0 && formData.sections.length > 0) {
+            // Tito trabalha
+            console.log("Dados do projeto:", formData);
         } else {
-            console.error("Erro: Dados do projeto não foram fornecidos.");
+            console.error("Erro: Dados incompletos.");
         }
     }
 
@@ -48,7 +52,7 @@ export default function Page() {
                 <h1 style={{ fontSize: 45, color: '#121212' }}>Create your project</h1>
                 <ProjectInfos onProjectInfos={handleProjectInfos} />
                 <SectionCreate onSectionCreate={handleSectionsData} />
-                <div className='mt-10'></div>
+                <div className='mt-10'></div>   
                 <CollaboratorsSelect onCollaboratorsData={handleCollaboratorsData} />
                 <Button className='mt-5' onClick={handleCreateProject}>Create</Button>
             </div>

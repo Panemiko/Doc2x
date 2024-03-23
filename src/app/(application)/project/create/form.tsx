@@ -1,7 +1,6 @@
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
-import { Button } from "@/components/ui/button";
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 
@@ -23,12 +22,15 @@ export function ProjectInfos({ onProjectInfos }: { onProjectInfos: (data: { titl
 
     const onSubmit = (data: z.infer<typeof formSchema>) => {
         onProjectInfos({ title: data.title, abstract: data.abstract });
-        form.reset(); // Reseta o formulário após o envio
+    };
+
+    const handleBlur = () => {
+        form.handleSubmit(onSubmit)();
     };
 
     return (
         <Form {...form}>
-            <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8 p-2">
+            <form className="space-y-8 p-2">
                 <FormField
                     control={form.control}
                     name="title"
@@ -36,7 +38,7 @@ export function ProjectInfos({ onProjectInfos }: { onProjectInfos: (data: { titl
                         <FormItem>
                             <FormLabel>Project Title</FormLabel>
                             <FormControl>
-                                <Input placeholder="Ex.: Sea Research" {...field} />
+                                <Input placeholder="Ex.: Sea Research" {...field} onBlur={handleBlur} />
                             </FormControl>
                             {fieldState.error && <FormMessage>{fieldState.error.message}</FormMessage>}
                         </FormItem>
@@ -49,13 +51,12 @@ export function ProjectInfos({ onProjectInfos }: { onProjectInfos: (data: { titl
                         <FormItem>
                             <FormLabel>Abstract</FormLabel>
                             <FormControl>
-                                <Input placeholder="Resume your project" {...field} />
+                                <Input placeholder="Resume your project" {...field} onBlur={handleBlur} />
                             </FormControl>
                             {fieldState.error && <FormMessage>{fieldState.error.message}</FormMessage>}
                         </FormItem>
                     )}
                 />
-                <Button type="submit">Submit</Button>
             </form>
         </Form>
     );
