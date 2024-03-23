@@ -15,7 +15,6 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-
 const formSchema = z.object({
   value: z.string().min(1, {
     message: "Title cannot be blank.",
