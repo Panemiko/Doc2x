@@ -25,7 +25,7 @@ const formSchema = z.object({
   }),
 })
 
-export function SectionCreate() {
+export function SectionCreate({ SectionCreate }: { SectionCreate: (data: { value: string, id: string }[]) => void }) {
   const [titles, setTitles] = useState<{ value: string, id: string }[]>([]);
 
   // 1. Define your form.
@@ -45,6 +45,7 @@ export function SectionCreate() {
     };
     setTitles(titles => [...titles, newTitle]);
     form.reset()
+    SectionCreate([...titles, newTitle]);
   }
 
 

@@ -24,16 +24,15 @@ const formSchema = z.object({
   }),
 })
 
-export function CollaboratorsSelect() {
-  const [titles, setTitles] = useState<{ value: string, id: string }[]>([]);
 
-  // 1. Define your form.
-  const form = useForm<z.infer<typeof formSchema>>({
-    resolver: zodResolver(formSchema),
-    defaultValues: {
-      value: "",
-    },
-  })
+export function CollaboratorsSelect({ onCollaboratorsData }: { onCollaboratorsData: (data: { value: string, id: string }[]) => void }){
+    const [titles, setTitles] = useState<{ value: string, id: string }[]>([]);
+    const form = useForm({
+      resolver: zodResolver(formSchema),
+      defaultValues: {
+        value: '',
+      },
+    });
   function randomNumber() {
     return Math.floor(Math.random() * 40)
   }
@@ -44,10 +43,9 @@ export function CollaboratorsSelect() {
     };
     setTitles(titles => [...titles, newTitle]);
     form.reset()
+    onCollaboratorsData([...titles, newTitle]);
   }
 
-
-  // Função para excluir um título pelo ID
   function deleteTitle(id: string) {
     setTitles(titles => titles.filter(title => title.id !== id));
   }
@@ -77,8 +75,8 @@ export function CollaboratorsSelect() {
         <div id="titles">
         {
           titles.map((title, index) => {
-            return <div className="flex mb-1" style={} key={index}>{title.value} 
-            <X style={} onClick={() => deleteTitle(title.id)} /> 
+            return <div className="flex mb-1"  key={index}>{title.value} 
+            <X  onClick={() => deleteTitle(title.id)} /> 
             </div>
           })
         }
