@@ -37,4 +37,11 @@ export const userRouter = createTRPCRouter({
 
       return user;
     }),
+  delete: protectedProcedure.mutation(async ({ ctx }) => {
+    await ctx.db.user.delete({
+      where: {
+        id: ctx.user.id,
+      },
+    });
+  }),
 });
