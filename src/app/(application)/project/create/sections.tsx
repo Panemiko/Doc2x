@@ -1,12 +1,10 @@
-"use client"
-
-import { zodResolver } from "@hookform/resolvers/zod"
-import { useForm } from "react-hook-form"
-import { z } from "zod"
-import { Button } from "@/components/ui/button"
-import { ArrowUpFromLine } from 'lucide-react'
+import { zodResolver } from "@hookform/resolvers/zod";
+import { useForm } from "react-hook-form";
+import { z } from "zod";
+import { Button } from "@/components/ui/button";
+import { ArrowUpFromLine } from 'lucide-react';
 import { X } from 'lucide-react';
-import {  useState } from "react"
+import { useState } from "react";
 import {
   Form,
   FormControl,
@@ -15,41 +13,39 @@ import {
   FormItem,
   FormLabel,
   FormMessage,
-} from "@/components/ui/form"
-import { Input } from "@/components/ui/input"
-
+} from "@/components/ui/form";
+import { Input } from "@/components/ui/input";
 
 const formSchema = z.object({
   value: z.string().min(1, {
-    message: "Title cant e blank.",
+    message: "Title cannot be blank.",
   }),
-})
+});
 
-export function SectionCreate({ SectionCreate }: { SectionCreate: (data: { value: string, id: string }[]) => void }) {
+export function SectionCreate({ onSectionCreate }: { onSectionCreate: (data: { value: string, id: string }[]) => void }) {
   const [titles, setTitles] = useState<{ value: string, id: string }[]>([]);
 
-  // 1. Define your form.
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
       value: "",
     },
-  })
+  });
+
   function randomNumber() {
-    return Math.floor(Math.random() * 40)
+    return Math.floor(Math.random() * 40);
   }
+
   function onSubmit(data: z.infer<typeof formSchema>) {
     const newTitle = {
       value: data.value,
       id: randomNumber().toString()
     };
     setTitles(titles => [...titles, newTitle]);
-    form.reset()
-    SectionCreate([...titles, newTitle]);
+    form.reset();
+    onSectionCreate([...titles, newTitle]);
   }
 
-
-  // Função para excluir um título pelo ID
   function deleteTitle(id: string) {
     setTitles(titles => titles.filter(title => title.id !== id));
   }
@@ -74,7 +70,7 @@ export function SectionCreate({ SectionCreate }: { SectionCreate: (data: { value
               <FormLabel>Title of your sections</FormLabel>
               <div className="flex">
                 <FormControl>
-                  <Input placeholder="Ex.:Introduction" {...field} />
+                  <Input placeholder="Ex.: Introduction" {...field} />
                 </FormControl>
                 <Button className="ml-2"><ArrowUpFromLine /></Button>
               </div>
@@ -87,5 +83,5 @@ export function SectionCreate({ SectionCreate }: { SectionCreate: (data: { value
         />
       </form>
     </Form>
-  )
+  );
 }
