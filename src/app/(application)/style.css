@@ -9,7 +9,7 @@
 
 :root{
   /* ===== Colors ===== */
-  --body-color: 0 0% 100%;
+  --body-color:0 0% 100%;
   --sidebar-color: #FFF;
   --primary-color: 240 10% 3.9%;
   --primary-color-light: #F6F5FF;
@@ -37,13 +37,13 @@ body{
   background-color: var(--primary-color);
   color: #fff;
 }
-.App.close.dark{
+body.dark{
   --body-color: #18191a;
   --sidebar-color: #242526;
   --primary-color: #3a3b3c;
   --primary-color-light: #3a3b3c;
   --toggle-color: #fff;
-  --text-color: #ccc;
+  --text-color: green;
 }
 /* ===== Sidebar ===== */
 .sidebar{
@@ -209,7 +209,7 @@ input {
 }
 .sidebar li a:hover .icon,
 .sidebar li a:hover .text{
-  color: var(--sidebar-color);
+  color: green;
 }
 body.dark .sidebar li a:hover .icon,
 body.dark .sidebar li a:hover .text{
