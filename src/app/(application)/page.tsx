@@ -15,8 +15,8 @@ function App() {
   };
 
   return (
-    <div className={darkMode ? 'dark' : ''}>
-      <nav className={`sidebar ${sidebarOpen ? '' : 'close'}`}>
+    <div className={`App ${sidebarOpen ? '' : 'close'} ${darkMode ? 'dark' : ''}`}>
+      <nav className="sidebar">
         <header>
           <div className="image-text">
             <span className="image">
