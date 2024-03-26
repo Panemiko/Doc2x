@@ -9,12 +9,12 @@
 
 :root{
   /* ===== Colors ===== */
-  --body-color: hsl(0 0% 100%);
+  --body-color: 0 0% 100%;
   --sidebar-color: #FFF;
-  --primary-color: hsl(240 10% 3.9%);
+  --primary-color: 240 10% 3.9%;
   --primary-color-light: #F6F5FF;
   --toggle-color: #DDD;
-  --text-color: hsl(240 10% 3.9%);
+  --text-color: 240 10% 3.9%;
   /* ====== Transition ====== */
   --tran-03: all 0.2s ease;
   --tran-03: all 0.3s ease;
@@ -37,7 +37,7 @@ body{
   background-color: var(--primary-color);
   color: #fff;
 }
-body.dark{
+.App.close.dark{
   --body-color: #18191a;
   --sidebar-color: #242526;
   --primary-color: #3a3b3c;
@@ -169,6 +169,11 @@ body.dark .sidebar header .toggle{
   cursor: pointer;
   transition: var(--tran-05);
 }
+
+input {
+  border: 3px solid black;
+}
+
 .sidebar li.search-box input{
   height: 100%;
   width: 100%;
@@ -224,7 +229,8 @@ body.dark .sidebar li a:hover .text{
   border-radius: 6px;
   background-color: var(--primary-color-light);
   position: relative;
-  width: 25vw;
+  cursor: pointer;
+  width: 12vw;
   margin-bottom: 40px;
   transition: var(--tran-05);
 }

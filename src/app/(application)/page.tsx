@@ -6,12 +6,20 @@ function App() {
   const [sidebarOpen, setSidebarOpen] = useState<boolean>(false);
   const [darkMode, setDarkMode] = useState<boolean>(false);
 
+  const toggleDarkMode = () => {
+    const newDarkMode = !darkMode;
+    setDarkMode(newDarkMode);
+  
+    if (newDarkMode) {
+      document.body.classList.add('dark');
+    } else {
+      document.body.classList.remove('dark');
+    }
+  };
+  
+
   const toggleSidebar = () => {
     setSidebarOpen(!sidebarOpen);
-  };
-
-  const toggleDarkMode = () => {
-    setDarkMode(!darkMode);
   };
 
   return (
@@ -85,7 +93,7 @@ function App() {
       <section className="home">
         <div className="text">Welcome!</div>
         <div className="about">
-          <h1>About me</h1>
+          <h1>Search</h1>
         </div>
       </section>
       <section className="contents">
@@ -117,20 +125,6 @@ function App() {
               <i className="fas fa-arrow-right card-icon"></i>
             </div>
           </a>
-        </div>
-        <div className="container">
-          <ul className="pagination">
-            <li><a href="#">Previous</a></li>
-            <li><a href="#">1</a></li>
-            <li><a href="#">2</a></li>
-            <li><a href="#">3</a></li>
-            <li><a href="#">4</a></li>
-            <li><a href="#">5</a></li>
-            <li><a href="#">6</a></li>
-            <li><a href="#">7</a></li>
-            <li><a href="#">8</a></li>
-            <li><a href="#">Next</a></li>
-          </ul>
         </div>
       </section>
     </div>
