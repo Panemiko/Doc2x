@@ -1,26 +1,138 @@
-import React from 'react';
-import './style.css';
+"use client"
+import React, { useState } from 'react';
+import './style.css'; // Importe o arquivo CSS
 
-const App: React.FC = () => {
+function App() {
+  const [sidebarOpen, setSidebarOpen] = useState<boolean>(false);
+  const [darkMode, setDarkMode] = useState<boolean>(false);
+
+  const toggleSidebar = () => {
+    setSidebarOpen(!sidebarOpen);
+  };
+
+  const toggleDarkMode = () => {
+    setDarkMode(!darkMode);
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <h1>Welcome to Our Website!</h1>
-      </header>
-      <main>
-        <section>
-          <h2>About Us</h2>
-          <p>We are a company dedicated to providing the best service.</p>
-        </section>
-        <section>
-          <h2>Contact Us</h2>
-          <p>Email: info@ourwebsite.com</p>
-          <p>Phone: 123-456-7890</p>
-        </section>
-      </main>
-      <footer className="App-footer">
-        <p>© 2023 Our Website</p>
-      </footer>
+    <div className={darkMode ? 'dark' : ''}>
+      <nav className={`sidebar ${sidebarOpen ? '' : 'close'}`}>
+        <header>
+          <div className="image-text">
+            <span className="image">
+              <img src="logo.jpg" alt="" />
+            </span>
+            <div className="text logo-text">
+              <span className="name">Doc2x</span>
+            </div>
+          </div>
+          <i className='bx bx-chevron-right toggle' onClick={toggleSidebar}></i>
+        </header>
+        <div className="menu-bar">
+          <div className="menu">
+            <ul className="menu-links">
+              <li className="nav-link">
+                <a href="#">
+                  <span className="text nav-text">Acount</span>
+                </a>
+              </li>
+              <li className="nav-link">
+                <a href="#">
+                  <i className='bx bx-home-alt icon' ></i>
+                  <span className="text nav-text">Home</span>
+                </a>
+              </li>
+              <li className="nav-link">
+                <a href="#">
+                  <i className='bx bx-bar-chart-alt-2 icon' ></i>
+                  <span className="text nav-text">Your Projects</span>
+                </a>
+              </li>
+              <li className="nav-link">
+                <a href="#">
+                  <i className='bx bx-bell icon'></i>
+                  <span className="text nav-text">Notifications</span>
+                </a>
+              </li>
+              <li className="nav-link">
+                <a href="#">
+                  <i className='bx bx-heart icon' ></i>
+                  <span className="text nav-text">Likes</span>
+                </a>
+              </li>
+            </ul>
+          </div>
+          <div className="bottom-content">
+            <li className="">
+              <a href="#">
+                <i className='bx bx-log-out icon' ></i>
+                <span className="text nav-text">Logout</span>
+              </a>
+            </li>
+            <li className="mode" onClick={toggleDarkMode}>
+              <div className="sun-moon">
+                <i className='bx bx-moon icon moon'></i>
+                <i className='bx bx-sun icon sun'></i>
+              </div>
+              <span className="mode-text text">{darkMode ? 'Light mode' : 'Dark mode'}</span>
+              <div className="toggle-switch">
+                <span className="switch"></span>
+              </div>
+            </li>
+          </div>
+        </div>
+      </nav>
+      <section className="home">
+        <div className="text">Welcome!</div>
+        <div className="about">
+          <h1>About me</h1>
+        </div>
+      </section>
+      <section className="contents">
+        <div>
+          <li className="search-box">
+            <i className='bx bx-search icon'></i>
+            <input type="text" placeholder="Search Projects" />
+          </li>
+        </div>
+        <div className="card-list">
+          <a href="#" className="card-item">
+            <span className="developer">Starting</span>
+            <h3>Electric car project</h3>
+            <div className="arrow">
+              <i className="fas fa-arrow-right card-icon"></i>
+            </div>
+          </a>
+          <a href="#" className="card-item">
+            <span className="designer">Development</span>
+            <h3>Project on basic education in schools</h3>
+            <div className="arrow">
+              <i className="fas fa-arrow-right card-icon"></i>
+            </div>
+          </a>
+          <a href="#" className="card-item">
+            <span className="editor">Complete</span>
+            <h3>Project on technology among young people</h3>
+            <div className="arrow">
+              <i className="fas fa-arrow-right card-icon"></i>
+            </div>
+          </a>
+        </div>
+        <div className="container">
+          <ul className="pagination">
+            <li><a href="#">Previous</a></li>
+            <li><a href="#">1</a></li>
+            <li><a href="#">2</a></li>
+            <li><a href="#">3</a></li>
+            <li><a href="#">4</a></li>
+            <li><a href="#">5</a></li>
+            <li><a href="#">6</a></li>
+            <li><a href="#">7</a></li>
+            <li><a href="#">8</a></li>
+            <li><a href="#">Next</a></li>
+          </ul>
+        </div>
+      </section>
     </div>
   );
 }
