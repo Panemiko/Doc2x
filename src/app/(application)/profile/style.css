@@ -1,11 +1,17 @@
 .body {
-    background-color: rgb(193, 98, 98);
-    min-height: 100vh;
+    background-color: hsl(var(--background));
 }
-label, .box{
+
+form {
     display: flex;
+    align-items: left;
+    flex-direction: column;
+    min-height: 100vh;
     justify-content: center;
-    align-items: center;
-    height: auto;
-    width: center;
+    padding: 15vh;
+    gap: 1rem;
+    max-width: 40rem;
+}
+input{
+    width: 10rem;
 }
