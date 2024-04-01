@@ -1,6 +1,6 @@
 "use client"
 import React, { useState } from 'react';
-import './style.css'; // Importe o arquivo CSS
+import './style.css';
 
 function App() {
   const [sidebarOpen, setSidebarOpen] = useState<boolean>(false);
